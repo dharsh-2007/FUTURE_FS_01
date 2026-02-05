@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark theme as default for portfolio */
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Neon green as primary */
+    --primary: 155 100% 50%;
+    --primary-foreground: 240 10% 4%;
+
+    /* Violet as secondary */
+    --secondary: 263 70% 50%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 10% 15%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 263 70% 50%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 10% 20%;
+    --input: 240 10% 15%;
+    --ring: 155 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Neon glow colors */
+    --neon-green: 155 100% 50%;
+    --neon-violet: 263 70% 50%;
+    --glow-green: 0 0 20px hsl(155 100% 50% / 0.5), 0 0 40px hsl(155 100% 50% / 0.3);
+    --glow-violet: 0 0 20px hsl(263 70% 50% / 0.5), 0 0 40px hsl(263 70% 50% / 0.3);
+
+    --sidebar-background: 240 10% 6%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 155 100% 50%;
+    --sidebar-primary-foreground: 240 10% 4%;
+    --sidebar-accent: 240 10% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 10% 20%;
+    --sidebar-ring: 155 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-glow-green {
+    text-shadow: 0 0 10px hsl(155 100% 50% / 0.8), 
+                 0 0 20px hsl(155 100% 50% / 0.6), 
+                 0 0 30px hsl(155 100% 50% / 0.4);
+  }
+
+  .text-glow-violet {
+    text-shadow: 0 0 10px hsl(263 70% 50% / 0.8), 
+                 0 0 20px hsl(263 70% 50% / 0.6), 
+                 0 0 30px hsl(263 70% 50% / 0.4);
+  }
+
+  .box-glow-green {
+    box-shadow: 0 0 15px hsl(155 100% 50% / 0.4), 
+                0 0 30px hsl(155 100% 50% / 0.2);
+  }
+
+  .box-glow-violet {
+    box-shadow: 0 0 15px hsl(263 70% 50% / 0.4), 
+                0 0 30px hsl(263 70% 50% / 0.2);
+  }
+
+  .box-glow-mixed {
+    box-shadow: 0 0 15px hsl(155 100% 50% / 0.3), 
+                0 0 30px hsl(263 70% 50% / 0.2),
+                0 0 45px hsl(155 100% 50% / 0.1);
+  }
+
+  .border-glow-green {
+    border-color: hsl(155 100% 50%);
+    box-shadow: 0 0 10px hsl(155 100% 50% / 0.5), 
+                inset 0 0 10px hsl(155 100% 50% / 0.1);
+  }
+
+  .border-glow-violet {
+    border-color: hsl(263 70% 50%);
+    box-shadow: 0 0 10px hsl(263 70% 50% / 0.5), 
+                inset 0 0 10px hsl(263 70% 50% / 0.1);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(155 100% 50%), hsl(263 70% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px hsl(155 100% 50% / 0.4), 
+                0 0 30px hsl(263 70% 50% / 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px hsl(155 100% 50% / 0.6), 
+                0 0 50px hsl(263 70% 50% / 0.4);
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
